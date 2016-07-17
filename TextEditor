@@ -4,18 +4,21 @@ import java.io.*;
 import javax.swing.*;
 import javax.swing.text.*;
 
-class TextEditor extends JFrame 
+public class TextEditor extends JFrame 
 {
   private JTextArea area = new JTextArea(25, 75); // Controls the size of the window
   private JFileChooser dialog = new JFileChooser(System.getProperty("user.dir"));
   private String currentFile = "Untitled"; // Title of file until it is named
   private boolean changed = false;
+  private File file;
+  private Font option1, option2, option3, option4;
+  private String command;
   
   public TextEditor() 
   {
-    area.setFont(new Font("Times New Roman",Font.PLAIN,12));
-    JScrollPane scroll = new JScrollPane(area,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-    add(scroll,BorderLayout.CENTER);
+    JScrollPane scroll = new JScrollPane(area, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+    add(scroll, BorderLayout.CENTER);
+    area.setFont(new Font("Times New Roman", Font.PLAIN, 12));
     
     JMenuBar menu = new JMenuBar();
     setJMenuBar(menu);
@@ -39,7 +42,31 @@ class TextEditor extends JFrame
     
     JMenu format = new JMenu("Format");
     
-    for(int i=0; i < 4; i++)
+    JMenu font = new JMenu("Font");
+    format.add(font);
+    
+    JMenu style = new JMenu("Styles");
+    JMenu size = new JMenu("Size");
+    
+    font.add(style);
+    font.add(size);
+
+    style.add(Cambria);
+    style.add(Calibri);
+    style.add(Arial);
+    style.add(TimesNewRoman);
+    
+    JMenu size1 = new JMenu("12");
+    JMenu size2 = new JMenu("14");
+    JMenu size3 = new JMenu("16");
+    JMenu size4 = new JMenu("18");
+    
+    size.add(size1);
+    size.add(size2);
+    size.add(size3);
+    size.add(size4);
+    
+    for(int i = 0; i < 4; i++)
     {
       file.getItem(i).setIcon(null);
     }
@@ -60,7 +87,7 @@ class TextEditor extends JFrame
     
     pack();
     area.addKeyListener(majorKey);
-    setTitle(currentFile);
+    setTitle(currentFile + " - Text Editor");
     setVisible(true);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
   }
@@ -79,7 +106,22 @@ class TextEditor extends JFrame
   {
     public void actionPerformed(ActionEvent e) 
     {
-      File file = new File("YourFile.txt");
+      String newFile;
+      newFile = JOptionPane.showInputDialog(null, "Enter name of file: ");
+      
+      try
+      {
+        file = new File(newFile);
+        
+        if(file.createNewFile())
+          JOptionPane.showMessageDialog(null, "File created !");
+        else
+          JOptionPane.showMessageDialog(null, "File already exists");
+      }
+      catch(Exception exception)
+      {
+        JOptionPane.showMessageDialog(null, "Error");
+      }
     }
   };
   
@@ -124,11 +166,11 @@ class TextEditor extends JFrame
     }
   };
   
-  ActionMap m = area.getActionMap();
-  Action Cut = m.get(DefaultEditorKit.cutAction);
-  Action Copy = m.get(DefaultEditorKit.copyAction);
-  Action Paste = m.get(DefaultEditorKit.pasteAction);
-  
+  ActionMap map = area.getActionMap();
+  Action Cut = map.get(DefaultEditorKit.cutAction);
+  Action Copy = map.get(DefaultEditorKit.copyAction);
+  Action Paste = map.get(DefaultEditorKit.pasteAction);
+
   private void saveFileAs() 
   {
     if(dialog.showSaveDialog(null)==JFileChooser.APPROVE_OPTION)
@@ -180,6 +222,45 @@ class TextEditor extends JFrame
     }
   }
   
+  Action Cambria = new AbstractAction("Cambria", new ImageIcon("cambria.gif")) 
+  {
+    public void actionPerformed(ActionEvent e) 
+    {
+    option1 = new Font("Cambria", Font.PLAIN, 12);
+    area.setFont(option1);
+    }
+  }; 
+  Action Calibri = new AbstractAction("Calibri", new ImageIcon("calibri.gif")) 
+  {
+    public void actionPerformed(ActionEvent e) 
+    {
+    option2 = new Font("Calibri", Font.PLAIN, 12);
+    area.setFont(option2);
+    }
+  };
+
+  Action Arial = new AbstractAction("Arial", new ImageIcon("arial.gif")) 
+  {
+    public void actionPerformed(ActionEvent e) 
+    {
+    option3 = new Font("Arial", Font.PLAIN, 12);
+    area.setFont(option3);
+    }
+  };
+
+  Action TimesNewRoman = new AbstractAction("Times New Roman", new ImageIcon("Times New Roman.gif")) 
+  {
+    public void actionPerformed(ActionEvent e) 
+    {
+    option4 = new Font("Times New Roman", Font.PLAIN, 12);
+    area.setFont(option4);
+    }
+  };
+
+  /*
+   * Add methods for font sizes
+   */ 
+   
   public  static void main(String[] arg) 
   {
     new TextEditor();
