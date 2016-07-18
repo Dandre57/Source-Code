@@ -12,14 +12,13 @@ public class TextEditor extends JFrame
   private boolean changed = false;
   private File file;
   private Font option1, option2, option3, option4;
-  private String command;
   
   public TextEditor() 
   {
     JScrollPane scroll = new JScrollPane(area, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     add(scroll, BorderLayout.CENTER);
-    area.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-    
+    area.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+  
     JMenuBar menu = new JMenuBar();
     setJMenuBar(menu);
     
@@ -40,22 +39,30 @@ public class TextEditor extends JFrame
     edit.getItem(1).setText("Copy");
     edit.getItem(2).setText("Paste");
     
-    JMenu format = new JMenu("Format");
-    
+    JMenu format = new JMenu("Format");   
     JMenu font = new JMenu("Font");
     format.add(font);
     
     JMenu style = new JMenu("Styles");
     JMenu size = new JMenu("Size");
+    JMenu color = new JMenu("Color");
     
     font.add(style);
     font.add(size);
+    font.add(color);
 
     style.add(Cambria);
     style.add(Calibri);
     style.add(Arial);
     style.add(TimesNewRoman);
     
+    color.add(Red);
+    color.add(Blue);
+    color.add(Yellow);
+    color.add(Green);
+    color.add(Pink);
+    
+    /*
     JMenu size1 = new JMenu("12");
     JMenu size2 = new JMenu("14");
     JMenu size3 = new JMenu("16");
@@ -65,7 +72,7 @@ public class TextEditor extends JFrame
     size.add(size2);
     size.add(size3);
     size.add(size4);
-    
+    */
     for(int i = 0; i < 4; i++)
     {
       file.getItem(i).setIcon(null);
@@ -226,41 +233,89 @@ public class TextEditor extends JFrame
   {
     public void actionPerformed(ActionEvent e) 
     {
-    option1 = new Font("Cambria", Font.PLAIN, 12);
-    area.setFont(option1);
+      //String conversion = font.getName();
+      option1 = new Font("Cambria", Font.PLAIN, 14);
+      area.setFont(option1);
     }
   }; 
+  
   Action Calibri = new AbstractAction("Calibri", new ImageIcon("calibri.gif")) 
   {
     public void actionPerformed(ActionEvent e) 
     {
-    option2 = new Font("Calibri", Font.PLAIN, 12);
-    area.setFont(option2);
+      option2 = new Font("Calibri", Font.PLAIN, 14);
+      area.setFont(option2);
     }
   };
-
+  
   Action Arial = new AbstractAction("Arial", new ImageIcon("arial.gif")) 
   {
     public void actionPerformed(ActionEvent e) 
     {
-    option3 = new Font("Arial", Font.PLAIN, 12);
-    area.setFont(option3);
+      option3 = new Font("Arial", Font.PLAIN, 14);
+      area.setFont(option3);
     }
   };
-
+  
   Action TimesNewRoman = new AbstractAction("Times New Roman", new ImageIcon("Times New Roman.gif")) 
   {
     public void actionPerformed(ActionEvent e) 
     {
-    option4 = new Font("Times New Roman", Font.PLAIN, 12);
-    area.setFont(option4);
+      option4 = new Font("Times New Roman", Font.PLAIN, 14);
+      area.setFont(option4);
     }
   };
-
+  
   /*
    * Add methods for font sizes
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
    */ 
-   
+  
+  Action Red = new AbstractAction("Red", new ImageIcon("red.gif")) 
+  {
+    public void actionPerformed(ActionEvent e) 
+    {
+      area.setForeground(Color.RED);
+    }
+  };
+  
+  Action Blue = new AbstractAction("Blue", new ImageIcon("blue.gif")) 
+  {
+    public void actionPerformed(ActionEvent e) 
+    {
+      area.setForeground(Color.BLUE);
+    }
+  };
+  
+  Action Yellow = new AbstractAction("Yellow", new ImageIcon("yellow.gif")) 
+  {
+    public void actionPerformed(ActionEvent e) 
+    {
+      area.setForeground(Color.YELLOW);
+    }
+  };
+  
+  Action Green = new AbstractAction("Green", new ImageIcon("green.gif")) 
+  {
+    public void actionPerformed(ActionEvent e) 
+    {
+      area.setForeground(Color.GREEN);
+    }
+  };
+  
+  Action Pink = new AbstractAction("Pink", new ImageIcon("pink.gif")) 
+  {
+    public void actionPerformed(ActionEvent e) 
+    {
+      area.setForeground(Color.PINK);
+    }
+  };
+  
   public  static void main(String[] arg) 
   {
     new TextEditor();
