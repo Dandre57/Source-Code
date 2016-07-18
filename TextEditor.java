@@ -62,17 +62,6 @@ public class TextEditor extends JFrame
     color.add(Green);
     color.add(Pink);
     
-    /*
-    JMenu size1 = new JMenu("12");
-    JMenu size2 = new JMenu("14");
-    JMenu size3 = new JMenu("16");
-    JMenu size4 = new JMenu("18");
-    
-    size.add(size1);
-    size.add(size2);
-    size.add(size3);
-    size.add(size4);
-    */
     for(int i = 0; i < 4; i++)
     {
       file.getItem(i).setIcon(null);
