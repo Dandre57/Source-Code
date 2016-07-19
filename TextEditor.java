@@ -11,7 +11,9 @@ public class TextEditor extends JFrame
   private String currentFile = "Untitled"; // Title of file until it is named
   private boolean changed = false;
   private File file;
-  private Font option1, option2, option3, option4;
+  private Font main;
+  private String name;
+  private int style;
   
   public TextEditor() 
   {
@@ -43,24 +45,30 @@ public class TextEditor extends JFrame
     JMenu font = new JMenu("Font");
     format.add(font);
     
-    JMenu style = new JMenu("Styles");
+    JMenu theme = new JMenu("Themes");
     JMenu size = new JMenu("Size");
     JMenu color = new JMenu("Color");
     
-    font.add(style);
+    font.add(theme);
     font.add(size);
     font.add(color);
 
-    style.add(Cambria);
-    style.add(Calibri);
-    style.add(Arial);
-    style.add(TimesNewRoman);
+    theme.add(Cambria);
+    theme.add(Calibri);
+    theme.add(Arial);
+    theme.add(TimesNewRoman);
     
     color.add(Red);
     color.add(Blue);
     color.add(Yellow);
     color.add(Green);
     color.add(Pink);
+    
+    size.add(Size12);
+    size.add(Size14);
+    size.add(Size16);
+    size.add(Size18);
+    size.add(Size20);
     
     for(int i = 0; i < 4; i++)
     {
@@ -177,7 +185,7 @@ public class TextEditor extends JFrame
   {
     if(changed) 
     {
-      if(JOptionPane.showConfirmDialog(this, "Would you like to save "+ currentFile +" ?","Save",JOptionPane.YES_NO_OPTION)== JOptionPane.YES_OPTION)
+      if(JOptionPane.showConfirmDialog(this, "Would you like to save " + currentFile + " ?","Save",JOptionPane.YES_NO_OPTION)== JOptionPane.YES_OPTION)
         saveFile(currentFile);
     }
   }
@@ -214,7 +222,7 @@ public class TextEditor extends JFrame
     }
     catch(IOException e) 
     {
-      System.out.println("Error");
+      JOptionPane.showMessageDialog(null,"Error");
     }
   }
   
@@ -222,9 +230,8 @@ public class TextEditor extends JFrame
   {
     public void actionPerformed(ActionEvent e) 
     {
-      //String conversion = font.getName();
-      option1 = new Font("Cambria", Font.PLAIN, 14);
-      area.setFont(option1);
+      main = new Font("Cambria", Font.PLAIN, 14);
+      area.setFont(main);
     }
   }; 
   
@@ -232,8 +239,8 @@ public class TextEditor extends JFrame
   {
     public void actionPerformed(ActionEvent e) 
     {
-      option2 = new Font("Calibri", Font.PLAIN, 14);
-      area.setFont(option2);
+      main = new Font("Calibri", Font.PLAIN, 14);
+      area.setFont(main);
     }
   };
   
@@ -241,8 +248,8 @@ public class TextEditor extends JFrame
   {
     public void actionPerformed(ActionEvent e) 
     {
-      option3 = new Font("Arial", Font.PLAIN, 14);
-      area.setFont(option3);
+      main = new Font("Arial", Font.PLAIN, 14);
+      area.setFont(main);
     }
   };
   
@@ -250,20 +257,60 @@ public class TextEditor extends JFrame
   {
     public void actionPerformed(ActionEvent e) 
     {
-      option4 = new Font("Times New Roman", Font.PLAIN, 14);
-      area.setFont(option4);
+      main = new Font("Times New Roman", Font.PLAIN, 14);
+      area.setFont(main);
     }
   };
   
-  /*
-   * Add methods for font sizes
-   * 
-   * 
-   * 
-   * 
-   * 
-   * 
-   */ 
+  Action Size12 = new AbstractAction("12", new ImageIcon("size12.gif")) 
+  {
+    public void actionPerformed(ActionEvent e) 
+    {
+      name = main.getName();
+      style = main.getStyle();
+      //area.setFont(name, style, 12);
+    }
+  };
+  
+  Action Size14 = new AbstractAction("14", new ImageIcon("size14.gif")) 
+  {
+    public void actionPerformed(ActionEvent e) 
+    {
+      name = main.getName();
+      style = main.getStyle();
+      //area.setFont(name, style, 14);
+    }
+  };
+  
+  Action Size16 = new AbstractAction("16", new ImageIcon("size16.gif")) 
+  {
+    public void actionPerformed(ActionEvent e) 
+    {
+      name = main.getName();
+      style = main.getStyle();
+      //area.setFont(name, style, 16);
+    }
+  };
+  
+  Action Size18 = new AbstractAction("18", new ImageIcon("size18.gif")) 
+  {
+    public void actionPerformed(ActionEvent e) 
+    {
+      name = main.getName();
+      style = main.getStyle();
+      //area.setFont(name, style, 18);
+    }
+  };
+  
+  Action Size20 = new AbstractAction("20", new ImageIcon("size20.gif")) 
+  {
+    public void actionPerformed(ActionEvent e) 
+    {
+      name = main.getName();
+      style = main.getStyle();
+      //area.setFont(name, style, 20);
+    }
+  };
   
   Action Red = new AbstractAction("Red", new ImageIcon("red.gif")) 
   {
