@@ -11,15 +11,13 @@ public class TextEditor extends JFrame
   private String currentFile = "Untitled"; // Title of file until it is named
   private boolean changed = false;
   private File file;
-  private Font main;
-  private String name;
-  private int style;
+  private Font font = new Font("Times New Roman", Font.PLAIN, 14);
   
   public TextEditor() 
   {
     JScrollPane scroll = new JScrollPane(area, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     add(scroll, BorderLayout.CENTER);
-    area.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+    area.setFont(font);
   
     JMenuBar menu = new JMenuBar();
     setJMenuBar(menu);
@@ -69,12 +67,7 @@ public class TextEditor extends JFrame
     size.add(Size16);
     size.add(Size18);
     size.add(Size20);
-    
-    for(int i = 0; i < 4; i++)
-    {
-      file.getItem(i).setIcon(null);
-    }
-    
+
     menu.add(file); 
     menu.add(edit);
     menu.add(format);
@@ -124,7 +117,7 @@ public class TextEditor extends JFrame
       }
       catch(Exception exception)
       {
-        JOptionPane.showMessageDialog(null, "Error");
+        JOptionPane.showMessageDialog(null, "OK");
       }
     }
   };
@@ -204,7 +197,7 @@ public class TextEditor extends JFrame
     catch(IOException e) 
     {
       Toolkit.getDefaultToolkit().beep();
-      JOptionPane.showMessageDialog(this,"Editor can't find the file called "+fileName);
+      JOptionPane.showMessageDialog(this, "Editor can't find the file called " + fileName);
     }
   }
   
@@ -222,7 +215,7 @@ public class TextEditor extends JFrame
     }
     catch(IOException e) 
     {
-      JOptionPane.showMessageDialog(null,"Error");
+      JOptionPane.showMessageDialog(null, "Error");
     }
   }
   
@@ -230,8 +223,8 @@ public class TextEditor extends JFrame
   {
     public void actionPerformed(ActionEvent e) 
     {
-      main = new Font("Cambria", Font.PLAIN, 14);
-      area.setFont(main);
+      font = new Font("Cambria", Font.PLAIN, 14);
+      area.setFont(font);
     }
   }; 
   
@@ -239,8 +232,8 @@ public class TextEditor extends JFrame
   {
     public void actionPerformed(ActionEvent e) 
     {
-      main = new Font("Calibri", Font.PLAIN, 14);
-      area.setFont(main);
+      font = new Font("Calibri", Font.PLAIN, 14);
+      area.setFont(font);
     }
   };
   
@@ -248,8 +241,8 @@ public class TextEditor extends JFrame
   {
     public void actionPerformed(ActionEvent e) 
     {
-      main = new Font("Arial", Font.PLAIN, 14);
-      area.setFont(main);
+      font = new Font("Arial", Font.PLAIN, 14);
+      area.setFont(font);
     }
   };
   
@@ -257,8 +250,8 @@ public class TextEditor extends JFrame
   {
     public void actionPerformed(ActionEvent e) 
     {
-      main = new Font("Times New Roman", Font.PLAIN, 14);
-      area.setFont(main);
+      font = new Font("Times New Roman", Font.PLAIN, 14);
+      area.setFont(font);
     }
   };
   
@@ -266,9 +259,8 @@ public class TextEditor extends JFrame
   {
     public void actionPerformed(ActionEvent e) 
     {
-      name = main.getName();
-      style = main.getStyle();
-      //area.setFont(name, style, 12);
+      Font newFont = font.deriveFont(12.0F);
+      area.setFont(newFont);
     }
   };
   
@@ -276,9 +268,8 @@ public class TextEditor extends JFrame
   {
     public void actionPerformed(ActionEvent e) 
     {
-      name = main.getName();
-      style = main.getStyle();
-      //area.setFont(name, style, 14);
+      Font newFont = font.deriveFont(14.0F);
+      area.setFont(newFont);
     }
   };
   
@@ -286,9 +277,8 @@ public class TextEditor extends JFrame
   {
     public void actionPerformed(ActionEvent e) 
     {
-      name = main.getName();
-      style = main.getStyle();
-      //area.setFont(name, style, 16);
+      Font newFont = font.deriveFont(16.0F);
+      area.setFont(newFont);
     }
   };
   
@@ -296,9 +286,8 @@ public class TextEditor extends JFrame
   {
     public void actionPerformed(ActionEvent e) 
     {
-      name = main.getName();
-      style = main.getStyle();
-      //area.setFont(name, style, 18);
+      Font newFont = font.deriveFont(18.0F);
+      area.setFont(newFont);
     }
   };
   
@@ -306,9 +295,8 @@ public class TextEditor extends JFrame
   {
     public void actionPerformed(ActionEvent e) 
     {
-      name = main.getName();
-      style = main.getStyle();
-      //area.setFont(name, style, 20);
+      Font newFont = font.deriveFont(20.0F);
+      area.setFont(newFont);
     }
   };
   
