@@ -3,6 +3,7 @@ import java.awt.event.*;
 import java.io.*;
 import javax.swing.*;
 import javax.swing.text.*;
+import javax.swing.undo.*;
 
 public class TextEditor extends JFrame 
 {
@@ -12,13 +13,14 @@ public class TextEditor extends JFrame
   private boolean changed = false;
   private File file;
   private Font font = new Font("Times New Roman", Font.PLAIN, 14);
+  private UndoManager undo = new UndoManager();
   
   public TextEditor() 
   {
     JScrollPane scroll = new JScrollPane(area, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     add(scroll, BorderLayout.CENTER);
     area.setFont(font);
-  
+    
     JMenuBar menu = new JMenuBar();
     setJMenuBar(menu);
     
@@ -34,6 +36,8 @@ public class TextEditor extends JFrame
     edit.add(Cut);
     edit.add(Copy);
     edit.add(Paste);
+    edit.add(Undo);
+    edit.add(Redo);
     
     edit.getItem(0).setText("Cut");
     edit.getItem(1).setText("Copy");
@@ -46,11 +50,13 @@ public class TextEditor extends JFrame
     JMenu theme = new JMenu("Themes");
     JMenu size = new JMenu("Size");
     JMenu color = new JMenu("Color");
+    JMenu style = new JMenu("Styles");
     
     font.add(theme);
     font.add(size);
     font.add(color);
-
+    font.add(style);
+    
     theme.add(Cambria);
     theme.add(Calibri);
     theme.add(Arial);
@@ -67,7 +73,17 @@ public class TextEditor extends JFrame
     size.add(Size16);
     size.add(Size18);
     size.add(Size20);
-
+    
+    style.add(Bold);
+    style.add(Italics);
+    style.add(Plain);
+    
+    /*
+     for(int i = 0; i < 4; i++)
+     {
+     file.getItem(i).setIcon(null);
+     }
+     */
     menu.add(file); 
     menu.add(edit);
     menu.add(format);
@@ -78,7 +94,7 @@ public class TextEditor extends JFrame
     tool.add(Open);
     tool.add(Save);
     tool.addSeparator();
-
+    
     Save.setEnabled(false);
     SaveAs.setEnabled(false);
     
@@ -167,7 +183,7 @@ public class TextEditor extends JFrame
   Action Cut = map.get(DefaultEditorKit.cutAction);
   Action Copy = map.get(DefaultEditorKit.copyAction);
   Action Paste = map.get(DefaultEditorKit.pasteAction);
-
+  
   private void saveFileAs() 
   {
     if(dialog.showSaveDialog(null)==JFileChooser.APPROVE_OPTION)
@@ -178,7 +194,7 @@ public class TextEditor extends JFrame
   {
     if(changed) 
     {
-      if(JOptionPane.showConfirmDialog(this, "Would you like to save " + currentFile + " ?","Save",JOptionPane.YES_NO_OPTION)== JOptionPane.YES_OPTION)
+      if(JOptionPane.showConfirmDialog(this, "Would you like to save " + currentFile + " ?", "Save", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
         saveFile(currentFile);
     }
   }
@@ -219,7 +235,33 @@ public class TextEditor extends JFrame
     }
   }
   
-  Action Cambria = new AbstractAction("Cambria", new ImageIcon("cambria.gif")) 
+  /*
+   * 
+   * 
+   */ 
+  Action Undo = new AbstractAction("Undo") 
+  {
+    public void actionPerformed(ActionEvent e) 
+    {
+      if (undo.canUndo())
+        undo.undo();
+    }
+  }; 
+  
+  /*
+   * 
+   * 
+   */ 
+  Action Redo = new AbstractAction("Redo")
+  {
+    public void actionPerformed(ActionEvent e)
+    {
+      if (undo.canRedo())
+        undo.redo();
+    }
+  };
+  
+  Action Cambria = new AbstractAction("Cambria") 
   {
     public void actionPerformed(ActionEvent e) 
     {
@@ -228,7 +270,7 @@ public class TextEditor extends JFrame
     }
   }; 
   
-  Action Calibri = new AbstractAction("Calibri", new ImageIcon("calibri.gif")) 
+  Action Calibri = new AbstractAction("Calibri") 
   {
     public void actionPerformed(ActionEvent e) 
     {
@@ -237,7 +279,7 @@ public class TextEditor extends JFrame
     }
   };
   
-  Action Arial = new AbstractAction("Arial", new ImageIcon("arial.gif")) 
+  Action Arial = new AbstractAction("Arial") 
   {
     public void actionPerformed(ActionEvent e) 
     {
@@ -246,7 +288,7 @@ public class TextEditor extends JFrame
     }
   };
   
-  Action TimesNewRoman = new AbstractAction("Times New Roman", new ImageIcon("Times New Roman.gif")) 
+  Action TimesNewRoman = new AbstractAction("Times New Roman") 
   {
     public void actionPerformed(ActionEvent e) 
     {
@@ -255,7 +297,7 @@ public class TextEditor extends JFrame
     }
   };
   
-  Action Size12 = new AbstractAction("12", new ImageIcon("size12.gif")) 
+  Action Size12 = new AbstractAction("12") 
   {
     public void actionPerformed(ActionEvent e) 
     {
@@ -264,7 +306,7 @@ public class TextEditor extends JFrame
     }
   };
   
-  Action Size14 = new AbstractAction("14", new ImageIcon("size14.gif")) 
+  Action Size14 = new AbstractAction("14") 
   {
     public void actionPerformed(ActionEvent e) 
     {
@@ -273,7 +315,7 @@ public class TextEditor extends JFrame
     }
   };
   
-  Action Size16 = new AbstractAction("16", new ImageIcon("size16.gif")) 
+  Action Size16 = new AbstractAction("16") 
   {
     public void actionPerformed(ActionEvent e) 
     {
@@ -282,7 +324,7 @@ public class TextEditor extends JFrame
     }
   };
   
-  Action Size18 = new AbstractAction("18", new ImageIcon("size18.gif")) 
+  Action Size18 = new AbstractAction("18") 
   {
     public void actionPerformed(ActionEvent e) 
     {
@@ -291,7 +333,7 @@ public class TextEditor extends JFrame
     }
   };
   
-  Action Size20 = new AbstractAction("20", new ImageIcon("size20.gif")) 
+  Action Size20 = new AbstractAction("20") 
   {
     public void actionPerformed(ActionEvent e) 
     {
@@ -300,7 +342,34 @@ public class TextEditor extends JFrame
     }
   };
   
-  Action Red = new AbstractAction("Red", new ImageIcon("red.gif")) 
+  Action Bold = new AbstractAction("Bold")
+  {
+    public void actionPerformed(ActionEvent e)
+    {
+      Font newFont = font.deriveFont(Font.BOLD);
+      area.setFont(newFont);
+    }
+  };
+  
+  Action Italics = new AbstractAction("Italics")
+  {
+    public void actionPerformed(ActionEvent e)
+    {
+      Font newFont = font.deriveFont(Font.ITALIC);
+      area.setFont(newFont);
+    }
+  };
+  
+  Action Plain = new AbstractAction("Plain")
+  {
+    public void actionPerformed(ActionEvent e)
+    {
+      Font newFont = font.deriveFont(Font.PLAIN);
+      area.setFont(newFont);
+    }
+  };
+  
+  Action Red = new AbstractAction("Red") 
   {
     public void actionPerformed(ActionEvent e) 
     {
@@ -308,7 +377,7 @@ public class TextEditor extends JFrame
     }
   };
   
-  Action Blue = new AbstractAction("Blue", new ImageIcon("blue.gif")) 
+  Action Blue = new AbstractAction("Blue") 
   {
     public void actionPerformed(ActionEvent e) 
     {
@@ -316,7 +385,7 @@ public class TextEditor extends JFrame
     }
   };
   
-  Action Yellow = new AbstractAction("Yellow", new ImageIcon("yellow.gif")) 
+  Action Yellow = new AbstractAction("Yellow") 
   {
     public void actionPerformed(ActionEvent e) 
     {
@@ -324,7 +393,7 @@ public class TextEditor extends JFrame
     }
   };
   
-  Action Green = new AbstractAction("Green", new ImageIcon("green.gif")) 
+  Action Green = new AbstractAction("Green") 
   {
     public void actionPerformed(ActionEvent e) 
     {
@@ -332,7 +401,7 @@ public class TextEditor extends JFrame
     }
   };
   
-  Action Pink = new AbstractAction("Pink", new ImageIcon("pink.gif")) 
+  Action Pink = new AbstractAction("Pink") 
   {
     public void actionPerformed(ActionEvent e) 
     {
