@@ -7,9 +7,9 @@ import javax.swing.undo.*;
 
 public class TextEditor extends JFrame 
 {
-  private JTextArea area = new JTextArea(25, 75); // Controls the size of the window
+  private JTextArea area = new JTextArea(25, 75); 
   private JFileChooser dialog = new JFileChooser(System.getProperty("user.dir"));
-  private String currentFile = "Untitled"; // Title of file until it is named
+  private String currentFile = "Untitled"; 
   private boolean changed = false;
   private File file;
   private Font font = new Font("Times New Roman", Font.PLAIN, 14);
@@ -78,12 +78,6 @@ public class TextEditor extends JFrame
     style.add(Italics);
     style.add(Plain);
     
-    /*
-     for(int i = 0; i < 4; i++)
-     {
-     file.getItem(i).setIcon(null);
-     }
-     */
     menu.add(file); 
     menu.add(edit);
     menu.add(format);
@@ -115,7 +109,11 @@ public class TextEditor extends JFrame
     }
   };
   
-  Action New = new AbstractAction("New", new ImageIcon("new.gif")) 
+  /* Creates a new file.
+   * If name of file doesn't already exist than an error 
+   * will come up.
+   */ 
+  Action New = new AbstractAction("New") 
   {
     public void actionPerformed(ActionEvent e) 
     {
@@ -138,7 +136,10 @@ public class TextEditor extends JFrame
     }
   };
   
-  Action Open = new AbstractAction("Open", new ImageIcon("open.gif")) 
+  /* Opens a previous file.
+   * 
+   */ 
+  Action Open = new AbstractAction("Open") 
   {
     public void actionPerformed(ActionEvent e) 
     {
@@ -151,7 +152,10 @@ public class TextEditor extends JFrame
     }
   };
   
-  Action Save = new AbstractAction("Save", new ImageIcon("save.gif")) 
+  /* Saves file changes if file already exist
+   * 
+   */ 
+  Action Save = new AbstractAction("Save") 
   {
     public void actionPerformed(ActionEvent e) 
     {
@@ -162,6 +166,9 @@ public class TextEditor extends JFrame
     }
   };
   
+  /* Creates and saves a new file.
+   * 
+   */ 
   Action SaveAs = new AbstractAction("Save As") 
   {
     public void actionPerformed(ActionEvent e) 
@@ -170,6 +177,9 @@ public class TextEditor extends JFrame
     }
   };
   
+  /* Closes the window.
+   * 
+   */ 
   Action Quit = new AbstractAction("Quit") 
   {
     public void actionPerformed(ActionEvent e) 
@@ -261,6 +271,9 @@ public class TextEditor extends JFrame
     }
   };
   
+  /* Changes files font to Camrbria.
+   * 
+   */ 
   Action Cambria = new AbstractAction("Cambria") 
   {
     public void actionPerformed(ActionEvent e) 
@@ -270,6 +283,9 @@ public class TextEditor extends JFrame
     }
   }; 
   
+  /* Changes files font to Calibri
+   * 
+   */ 
   Action Calibri = new AbstractAction("Calibri") 
   {
     public void actionPerformed(ActionEvent e) 
@@ -279,6 +295,9 @@ public class TextEditor extends JFrame
     }
   };
   
+  /* Changes files font to Arial
+   * 
+   */ 
   Action Arial = new AbstractAction("Arial") 
   {
     public void actionPerformed(ActionEvent e) 
@@ -288,6 +307,9 @@ public class TextEditor extends JFrame
     }
   };
   
+  /* Changes files font to Times New Roman
+   * 
+   */ 
   Action TimesNewRoman = new AbstractAction("Times New Roman") 
   {
     public void actionPerformed(ActionEvent e) 
@@ -297,6 +319,9 @@ public class TextEditor extends JFrame
     }
   };
   
+  /* Changes files font size to size 12
+   * 
+   */ 
   Action Size12 = new AbstractAction("12") 
   {
     public void actionPerformed(ActionEvent e) 
@@ -306,6 +331,9 @@ public class TextEditor extends JFrame
     }
   };
   
+  /* Changes files font size to size 14
+   * 
+   */ 
   Action Size14 = new AbstractAction("14") 
   {
     public void actionPerformed(ActionEvent e) 
@@ -315,6 +343,9 @@ public class TextEditor extends JFrame
     }
   };
   
+  /* Changes files font size to size 16
+   *  
+   */ 
   Action Size16 = new AbstractAction("16") 
   {
     public void actionPerformed(ActionEvent e) 
@@ -324,6 +355,9 @@ public class TextEditor extends JFrame
     }
   };
   
+  /* Changes files font size to size 18
+   * 
+   */ 
   Action Size18 = new AbstractAction("18") 
   {
     public void actionPerformed(ActionEvent e) 
@@ -333,6 +367,9 @@ public class TextEditor extends JFrame
     }
   };
   
+  /* Changes files font size to size 20
+   * 
+   */ 
   Action Size20 = new AbstractAction("20") 
   {
     public void actionPerformed(ActionEvent e) 
@@ -342,6 +379,9 @@ public class TextEditor extends JFrame
     }
   };
   
+  /* Changes files style to Bold
+   * 
+   */ 
   Action Bold = new AbstractAction("Bold")
   {
     public void actionPerformed(ActionEvent e)
@@ -351,6 +391,9 @@ public class TextEditor extends JFrame
     }
   };
   
+  /* Changes files style to Italics
+   *  
+   */ 
   Action Italics = new AbstractAction("Italics")
   {
     public void actionPerformed(ActionEvent e)
@@ -360,6 +403,9 @@ public class TextEditor extends JFrame
     }
   };
   
+  /* Changes files style to Plain
+   * 
+   */ 
   Action Plain = new AbstractAction("Plain")
   {
     public void actionPerformed(ActionEvent e)
@@ -369,6 +415,9 @@ public class TextEditor extends JFrame
     }
   };
   
+  /* Changes files color to Red
+   *  
+   */ 
   Action Red = new AbstractAction("Red") 
   {
     public void actionPerformed(ActionEvent e) 
@@ -377,6 +426,9 @@ public class TextEditor extends JFrame
     }
   };
   
+  /* Changes files color to Blue
+   * 
+   */ 
   Action Blue = new AbstractAction("Blue") 
   {
     public void actionPerformed(ActionEvent e) 
@@ -385,6 +437,9 @@ public class TextEditor extends JFrame
     }
   };
   
+  /* Changes files color to Yellow
+   * 
+   */ 
   Action Yellow = new AbstractAction("Yellow") 
   {
     public void actionPerformed(ActionEvent e) 
@@ -393,6 +448,9 @@ public class TextEditor extends JFrame
     }
   };
   
+  /* Changes files color to Green
+   *  
+   */ 
   Action Green = new AbstractAction("Green") 
   {
     public void actionPerformed(ActionEvent e) 
@@ -401,6 +459,9 @@ public class TextEditor extends JFrame
     }
   };
   
+  /* Changes files color to Pink
+   * 
+   */ 
   Action Pink = new AbstractAction("Pink") 
   {
     public void actionPerformed(ActionEvent e) 
