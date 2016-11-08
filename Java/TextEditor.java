@@ -17,6 +17,8 @@ public class TextEditor extends JFrame
   
   public TextEditor() 
   {
+     setTitle(currentFile + " - Text Editor");
+  
     JScrollPane scroll = new JScrollPane(area, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     add(scroll, BorderLayout.CENTER);
     area.setFont(font);
@@ -94,7 +96,6 @@ public class TextEditor extends JFrame
     
     pack();
     area.addKeyListener(majorKey);
-    setTitle(currentFile + " - Text Editor");
     setVisible(true);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
   }
