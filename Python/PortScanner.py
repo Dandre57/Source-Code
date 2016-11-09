@@ -33,7 +33,7 @@ input = raw_input("Enter a url: ")
 
 
 """
-
+These statesments print the information created by the methods
 """
 print("Domain Name: " + get_domain_name(input) + " \n")
 print("IP Address: " + get_ip_address(input) + " \n")
