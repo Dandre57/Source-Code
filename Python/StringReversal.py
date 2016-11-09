@@ -5,8 +5,7 @@ print(input)
 
 conversion = list(input)
 
-i = 0
-
+index = 0
 while i < conversion.length:
 	print(conversion[len(conversion) - 1])
-	i++
+	index++
