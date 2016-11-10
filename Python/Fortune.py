@@ -3,17 +3,28 @@
 from random import randint
 from tkinter import *
 
+root = tkinter.TK()
+
 # Will hold list of different quotes
 fortune[] = {""}
 
-def randQuote(advice):
-  length = len(advice)
+"""
+This method will return a random quote from the array 
+"""
+def randQuote():
+  global fortune
+  
+  length = len(fortune)
   rand = randint(0, length) - 1 
-  choice = advice[rand]
-  return choice
+  advice = fortune[rand]
+  return advice
 
-def interface():
-  root = tkinter.TK()
+"""
+This method creates the interface that will create the main GUI
+"""
+def mainInterface():
+  global root
+  
   root.title("Fortune Cookie")
   root.geometry("500x400")
  
@@ -21,7 +32,13 @@ def interface():
   cookiePic = tkinter.Label(root, image=picture)
   cookiePic.pack()
   
-  butt = tkinter.Button(root, "Click For A Fortune", command=)
+  butt = tkinter.Button(root, "Click For A Fortune!", command=)
   butt.pack()
   
   root.mainloop()
+
+def popUpWindow():
+  global root 
+  
+  root
+  
