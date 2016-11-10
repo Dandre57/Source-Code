@@ -29,7 +29,7 @@ def mainInterface():
  
   firstPicture = tkinter.PhotoImage(file="filepath/FortuneCookie.jpeg")
   cookiePic = tkinter.Label(root, image=firstPicture)
-  cookiePic.pack()
+  cookiePic.pack(anchor=CENTER)
   """
   secondPicture = tkinter.PhotoImage(file="filepath/.jpeg")
   firstEmojiPic = tkinter.Label(root, image=secondPicture)
