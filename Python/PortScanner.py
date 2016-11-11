@@ -13,7 +13,7 @@ def get_domain_name(url):
 
 
 """
-This method uses the URL given and returns the IP Address
+This method uses the URL given and returns the first IP Address found
 """
 def get_ip_address(url):
     commmand = "host " + url
