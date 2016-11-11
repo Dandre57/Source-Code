@@ -16,7 +16,12 @@ def get_domain_name(url):
 This method uses the URL given and returns the IP Address
 """
 def get_ip_address(url):
-    return ip_address(url)
+    commmand = "host " + url
+    data = os.popen(command)
+    results = str(data.read())
+    temp = results.find("has address") + 12
+    ip_address = results[temp:].splitlines()[0]
+    return ip_address
 
 
 """
@@ -24,13 +29,12 @@ This method uses the IP Addresses of the given URL and returns the Open Ports
 """
 def port_scan(ip):
     command = "nmap " + ip
-    process = os.popen(command)
-    ports = str(process.read())
+    scan = os.popen(command)
+    ports = str(scan.read())
     return ports
 
 
 input = raw_input("Enter a url: ")
-
 
 """
 These statesments print the information created by the methods
