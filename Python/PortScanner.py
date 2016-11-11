@@ -1,7 +1,6 @@
 #This program takes the URL inputed by the user and returns the Domain Name, IP Address, and any Open Ports
 
 from tld import get_tld
-from socket import gethostbyname
 import os
 
 """
