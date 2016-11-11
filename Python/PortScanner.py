@@ -39,6 +39,8 @@ input = raw_input("Enter a url: ")
 """
 These statesments print the information created by the methods
 """
-print("Domain Name: " + get_domain_name(input) + " \n" +
+# "URL: " + input + " \n" +
+print("URL: " + input + " \n" +
+      "Domain Name: " + get_domain_name(input) + " \n" +
       "IP Address: " + get_ip_address(input) + " \n" +
       "Open Ports: " + port_scan(get_ip_address(input)) + " \n")
