@@ -33,13 +33,16 @@ def port_scan(ip):
     return ports
 
 
-input = raw_input("Enter a url: ")
+"""
+This main method will print the information created by the methods
+"""
+def main():
+    input = raw_input("Enter a url: ")
+    
+    print("URL: " + input + " \n" +
+          "Domain Name: " + get_domain_name(input) + " \n" +
+          "IP Address: " + get_ip_address(input) + " \n" +
+          "Open Ports: " + port_scan(get_ip_address(input)) + " \n")
 
-"""
-These statesments print the information created by the methods
-"""
-# "URL: " + input + " \n" +
-print("URL: " + input + " \n" +
-      "Domain Name: " + get_domain_name(input) + " \n" +
-      "IP Address: " + get_ip_address(input) + " \n" +
-      "Open Ports: " + port_scan(get_ip_address(input)) + " \n")
+#Calls the main method and runs the program
+main()
