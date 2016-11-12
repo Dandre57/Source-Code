@@ -9,4 +9,8 @@ sock.bind(host, port)
 
 sock.listen()
 while True:
+  connection, address = sock.accept()
+  print("Got connection from:" + address)
+  connection.send("You're connected")
+  connection.close()
   
