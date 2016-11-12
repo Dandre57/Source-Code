@@ -1,7 +1,7 @@
 /**
    This program simulates the rolling of dice.
 */
-Java/
+
 public class DiceDemo
 {
    public static void main(String[] args)
