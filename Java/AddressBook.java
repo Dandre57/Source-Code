@@ -40,7 +40,7 @@ public class AddressBook
 		{
 			System.out.println("An error has occured");
 		} 
-	}
+	} // End of constructor
 	
 	public static void main(String[] args) throws IOException
 	{
