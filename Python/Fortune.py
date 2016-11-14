@@ -6,6 +6,7 @@ import tkMessageBox
 
 # Will hold list of different quotes
 fortune[] = {""}
+root = tkinter.TK()
 
 """
 This method will return a random quote from the array 
@@ -22,15 +23,28 @@ def randomQuote():
 This method creates the interface that will create the main GUI
 """
 def mainInterface():
-  root = tkinter.TK()
+  global root
   
   root.title("Fortune Cookie")
   root.geometry("500x400")
  
+  addPictures()
+
+  butt = tkinter.Button(root, "Click For A Fortune!", command=popUpWindow())
+  butt.pack()
+  
+  root.mainloop()
+
+"""
+This method adds pictures to the main interface
+"""
+def addPictures():
+  global root
+  
   firstPicture = tkinter.PhotoImage(file="filepath/FortuneCookie.jpeg")
   cookiePic = tkinter.Label(root, image=firstPicture)
   cookiePic.pack(anchor=CENTER)
-  """
+
   secondPicture = tkinter.PhotoImage(file="filepath/.jpeg")
   firstEmojiPic = tkinter.Label(root, image=secondPicture)
   firstEmojiPic.pack()
@@ -38,12 +52,8 @@ def mainInterface():
   thirdPicture = tkinter.PhotoImage(file="filepath/.jpeg")
   secondEmojiPic = tkinter.Label(root, image=thirdPicture)
   secondEmojiPic.pack()
-  """
-  butt = tkinter.Button(root, "Click For A Fortune!", command=popUpWindow())
-  butt.pack()
-  
-  root.mainloop()
 
+  
 """
 This method creates a pop up window that shows you your fortune
 """
