@@ -26,5 +26,5 @@ i20:    sw      $15, avg
         sw      $15, avg
         la      $16, i1
         sw      $15, 0($16)
-        add i3, i3, 1
+        add     i3, i3, 1
         done 
