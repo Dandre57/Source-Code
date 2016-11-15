@@ -11,7 +11,7 @@ public class AddressBook
 	{
 		try
 		{
-			Scanner scan = new Scanner(System.in);
+			scan = new Scanner(System.in);
 
 			file.createNewFile();
 
