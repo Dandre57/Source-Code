@@ -5,6 +5,7 @@ import java.io.*;
 public class AddressBook
 {
 	private Scanner scan = null;
+	private File file = new File("AddressBook.txt");
 	
 	public AddressBook
 	{
@@ -12,10 +13,10 @@ public class AddressBook
 		{
 			Scanner scan = new Scanner(System.in);
 
-			File file = new File("AddressBook.txt");
 			file.createNewFile();
 
-			FileWriter writer = new FileWriter(file);
+			FileWriter w = new FileWriter(file);
+			FileReader r = new FileReader(file);
 
 			//String userName;
 			String contactName, contactNumber;
@@ -33,7 +34,8 @@ public class AddressBook
 			contact = String.format("Name %s\t Phone Number %s\t ", contactName, contactNumber);
 
 			//writer.write();
-			writer.write(contact);
+			w.write(contact);
+			w.close();
 			
 		} // End of try statement
 		catch(Exception e)
