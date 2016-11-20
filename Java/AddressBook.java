@@ -31,7 +31,7 @@ public class AddressBook
 			contactNumber = scan.nextln();
 		
 			//str = String.format("\n%s Address Book", userName);
-			contact = String.format("Name %s\t Phone Number %s\t ", contactName, contactNumber);
+			contact = String.format("Name: %s\t Phone Number: %s\t ", contactName, contactNumber);
 
 			//writer.write();
 			w.write(contact);
@@ -52,12 +52,12 @@ public class AddressBook
 		String answer;
 		
 		System.out.println("Would you like to input another contact?");
-		answer = nextln();
+		answer = scan.nextln();
 		
 		while(answer.toLowerCase() == "yes")
 		{
 			System.out.println("Would you like to input another contact?");
-			answer = nextln();
+			answer = scan.nextln();
 			new AddressBook();
 		}
 	} // End of main method
