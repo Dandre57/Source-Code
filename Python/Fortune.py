@@ -6,6 +6,7 @@ import tkMessageBox
 
 # Will hold list of different quotes
 fortune[] = {""}
+
 root = tkinter.TK()
 
 """
@@ -53,9 +54,14 @@ def addPictures():
   secondEmojiPic = tkinter.Label(root, image=thirdPicture)
   secondEmojiPic.pack()
 
-  
 """
 This method creates a pop up window that shows you your fortune
 """
 def popUpWindow():
-  tkMessageBox.showinfo("Your Fortune", randomQuote())
+  tkMessageBox.showinfo("Your Fortune: ", randomQuote())
+  
+"""
+Main method
+"""
+def main():
+  mainInterface()
