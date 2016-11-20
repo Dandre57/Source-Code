@@ -1,6 +1,10 @@
+from tkinter import *
 import pyglet
 import time
 import os
+import sys
+
+root = tkinter.TK()
 
 def musicPlayer():
   music = pyglet.media.load(".mp3", streaming=False)
@@ -16,9 +20,17 @@ def window():
   """
   Add statements to create thw window
   """
+  global root
+  
+  root.title()
+  root.geometry()
+  butt = tkinter.Button(root, "Click To Stop This!", command=sys.exit())
+  butt.pack()
+  
+  root.mainloop()
   
 def main():
-  userHour = raw_input("")
-  userMinute = raw_input("")
+  userHour = raw_input("Input the hour: ")
+  userMinute = raw_input("Input the minute: ")
   
   timer(userHour, userMinute)
