@@ -1,7 +1,6 @@
 from tkinter import *
 import pyglet
 import time
-import os
 import sys
 
 root = tkinter.TK()
