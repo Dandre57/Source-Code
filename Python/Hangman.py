@@ -7,3 +7,4 @@ heroes = ["batman", "flash", "superman",
 
 length = len(heroes)
 rand = randint(0, length)
+word = heroes[rand]
