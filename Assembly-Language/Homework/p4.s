@@ -6,7 +6,7 @@ i2:       .word   13      #Second integer
 i3:       .word   82      #Third integer
 prompt:   .asciiz "Value is: "
 nl:       .byte   ’\n’
-           
+#---------------------------------------------------------------------           
           .text                #Text segment begins here
  _start:  lw      $15,i1       #$15 contains 20
           lw      $16,i2       #$16 contains 13
@@ -19,13 +19,12 @@ i20:      sw      $15,avg       #Store the average
           puts    prompt
           put     avg
           putc    nl
-           
           sw      $15,avg
           la      $16,i1
           sw      $15,0($16)
           add     i3,i3,1
           done                #Similar to halt
-
+#--------------------------------------------------------------------- 
 Cross Reference Table
 
 Identifier    Definition  Use
