@@ -40,6 +40,10 @@ int main(void)
         case "-b":
             both(inputFile, outputFile);
             break;
+      
+      default:
+            printf("Not a valid entry.");
+            exit(0);
     }
     
 }
