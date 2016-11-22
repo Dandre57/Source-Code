@@ -25,3 +25,16 @@ i20:      sw      $15,avg       #Store the average
           sw      $15,0($16)
           add     i3,i3,1
           done                #Similar to halt
+
+Cross Reference Table
+
+Identifier    Definition  Use
+avg           3           17 19 21
+i1            4           10 22
+i2            5           11
+i3            6           13 24
+prompt        7           18
+nl            8           20
+_start        10
+i10           12
+i20           17
