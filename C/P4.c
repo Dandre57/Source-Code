@@ -46,22 +46,89 @@ int main(void)
             exit(0);
     }
     
+   return 0;
 }
 
 // for argument -c (cross reference table)
 void refTable(FILE in, FILE out)
 {
-    // read file until it finds
+ 	 char words;
+    
+  	f1 = fopen(in, "r");
+ 	 if (f1 == NULL)
+ 	 {
+    	printf("Cannot open file.\n");
+   	 exit(0);
+     }
+    
+    f2 = fopen(out, "w");
+    if(f2 == NULL)
+    {
+        printf("Cannot open file\n");
+        exit(0);
+    }
+
+    while(words != EOF)
+    {
+        words = fgetc(f1);
+        fputs(f2);
+    }
+
+    fcloseall();
+  
 }
 
 // for argument -l (MAL source program)
 void sourceProgram(FILE in, FILE out)
 {
+        char words;
     
+    f1 = fopen(in, "r");
+     if (f1 == NULL)
+     {
+         printf("Cannot open file.\n");
+         exit(0);
+     }
+    
+    f2 = fopen(out, "w");
+    if(f2 == NULL)
+    {
+        printf("Cannot open file\n");
+        exit(0);
+    }
+
+    while(words != EOF)
+    {
+     
+    }
+
+    fcloseall();
 }
 
 // for argument -b ()
 void both(FILE in, FILE out)
 {
+     char words;
     
+    f1 = fopen(in, "r");
+     if (f1 == NULL)
+     {
+         printf("Cannot open file.\n");
+         exit(0);
+     }
+    
+    f2 = fopen(out, "w");
+    if(f2 == NULL)
+    {
+        printf("Cannot open file\n");
+        exit(0);
+    }
+
+    while(words != EOF)
+    {
+        words = fgetc(f1);
+        fputs(f2);
+    }
+
+    fcloseall();
 }
