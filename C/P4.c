@@ -56,9 +56,9 @@ void refTable(FILE in, FILE out)
     
   	f1 = fopen(in, "r");
  	 if (f1 == NULL)
- 	 {
-    	printf("Cannot open file.\n");
-   	 exit(0);
+ 	   {
+    	   printf("Cannot open file.\n");
+   	    exit(0);
      }
     
     f2 = fopen(out, "w");
@@ -68,10 +68,9 @@ void refTable(FILE in, FILE out)
         exit(0);
     }
 
-    while(words != EOF)
+    while()
     {
-        words = fgetc(f1);
-        fputs(f2);
+
     }
 
     fcloseall();
@@ -97,7 +96,7 @@ void sourceProgram(FILE in, FILE out)
         exit(0);
     }
 
-    while(words != EOF)
+    while()
     {
      
     }
