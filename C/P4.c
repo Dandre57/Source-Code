@@ -2,10 +2,11 @@
  D'Andre Campbell
  Assignment 4
  Wed. 4:15 - 5:10
- */
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 void refTable(FILE in, FILE out);
 void sourceProgram(FILE in, FILE out);
@@ -13,9 +14,9 @@ void both(FILE in, FILE out);
 
 int main(void)
 {
-    char flag[2];
-    char inputFile;
-    char outputFile;
+    char flag;
+    FILE *inputFile;
+    FILE *outputFile;
     
     printf("Input the flag:");
     scanf("%s", &flag);
@@ -23,100 +24,80 @@ int main(void)
     printf("\nInput the name of the input file: ");
     scanf("%s", &inputFile);
     
-    
     printf("\nInput the name of the output file: ");
     scanf("%s", &outputFile);
-    
-    switch(flag)
+
+    if(strcmp(flag, "-l") != 0)
+        sourceProgram(*inputFile, outputFile);
+
+    else if(strcmp(flag, "-c") != 0)
+        refTable(*inputFile, outputFile);
+
+    else if(strcmp(flag, "-b") != 0)
+        both(*inputFile, outputFile);
+
+    else
     {
-        case "-l":
-            sourceProgram(inputFile, outputFile);
-            break;
-            
-        case "-c":
-            refTable(inputFile, outputFile);
-            break;
-            
-        case "-b":
-            both(inputFile, outputFile);
-            break;
-      
-      default:
-            printf("Not a valid entry.");
-            exit(0);
+        printf("Not a valid entry.");
+        exit(0);
     }
-    
+
    return 0;
 }
 
 // for argument -c (cross reference table)
 void refTable(FILE in, FILE out)
 {
- 	 char words;
+    char words;
+    int numOfLines = 0;
+    FILE *f1, *f2;
+
+    f1 = fopen(*in, "r");
+    if (f1 == NULL)
+    {
+        printf("Cannot open file.\n");
+        exit(0);
+    }
     
-  	f1 = fopen(in, "r");
- 	 if (f1 == NULL)
- 	   {
-    	   printf("Cannot open file.\n");
-   	    exit(0);
-     }
-    
-    f2 = fopen(out, "w");
+    f2 = fopen(*out, "w");
     if(f2 == NULL)
     {
-        printf("Cannot open file\n");
+        printf("Cannot open file.\n");
         exit(0);
     }
 
-    while()
+    while(words != EOF)
     {
-
+        numOfLines++;
+        words = fgetc(f1);
+        if(strstr(words, "") != NULL)
+        {
+         
+        }
+        fwrite("%d %s", numOfLines, words, f2);
     }
 
-    fcloseall();
+    fclose(f1);
+    fclose(f2);
   
 }
 
 // for argument -l (MAL source program)
 void sourceProgram(FILE in, FILE out)
 {
-        char words;
-    
-    f1 = fopen(in, "r");
-     if (f1 == NULL)
-     {
-         printf("Cannot open file.\n");
-         exit(0);
-     }
-    
-    f2 = fopen(out, "w");
-    if(f2 == NULL)
+    char words;
+    char look = "done";
+    int numOfLines = 0;
+    FILE *f1, *f2;
+
+    f1 = fopen(*out, "r");
+    if(f1 == NULL)
     {
         printf("Cannot open file\n");
         exit(0);
     }
-
-    while()
-    {
-     
-    }
-
-    fcloseall();
-}
-
-// for argument -b ()
-void both(FILE in, FILE out)
-{
-     char words;
-    
-    f1 = fopen(in, "r");
-     if (f1 == NULL)
-     {
-         printf("Cannot open file.\n");
-         exit(0);
-     }
-    
-    f2 = fopen(out, "w");
+ 
+    f2 = fopen(*out, "w");
     if(f2 == NULL)
     {
         printf("Cannot open file\n");
@@ -125,9 +106,47 @@ void both(FILE in, FILE out)
 
     while(words != EOF)
     {
-        words = fgetc(f1);
-        fputs(f2);
+       numOfLines++;
+       words = fgetc(f1);
+       if(strstr(words, "done") != NULL)
+       {
+        exit(0);
+       }
+       fwrite("%d %s", numOfLines, words, f2);         
     }
 
-    fcloseall();
+    fclose(f1);
+    fclose(f2);
+}
+
+// for argument -b ()
+void both(FILE in, FILE out)
+{
+    char words;
+    int numOfLines = 0;
+    FILE *f1, *f2;
+
+    f1 = fopen(*in, "r");
+    if (f1 == NULL)
+    {
+        printf("Cannot open file.\n");
+        exit(0);
+    }
+    
+    f2 = fopen(*out, "w");
+    if(f2 == NULL)
+    {
+        printf("Cannot open file\n");
+        exit(0);
+    }
+
+    while(words != EOF)
+    {
+        numOfLines++;
+        words = fgetc(f1);
+        fwrite("%d %s", numOfLines, words, f2);
+    }
+
+    fclose(f1);
+    fclose(f2);
 }
