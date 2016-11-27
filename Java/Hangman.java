@@ -4,7 +4,7 @@ import java.util.Random;
 public class Hangman
 {
   private String[] array = {"batman", "flash", "superman", "cyborg", 
-                            "wonderwoman" ,"aquaman", "ironman", "hulk", 
+                            "wonderwoman", "aquaman", "ironman", "hulk", 
                             "thor", "wolverine", "spiderman"}
   private int numHeroes;
   private String hero;
@@ -16,15 +16,20 @@ public class Hangman
     Scanner scan = new Scanner(System.in);
     
     chooseHero();
-    String word = getHero();
+    String answer = getHero();
+    String temp;
     char[] guess;
       
     System.out.println("Welcome to Hangman! \n");
-    System.out.println("This version only contain popular heroes!");
+    System.out.println("This version only contains popular heroes from \n" +
+    "the Marvel and D.C. Universes!");
+
     System.out.print("Take your guess: ");
-    
-    //guess = 
-  }
+    temp = scan.nextln();
+    guess = temp.toCharArray();
+
+
+  }// End of Constructor
   
   public void choosenHero()
   {
@@ -32,8 +37,14 @@ public class Hangman
     
     numHeroes = array.length - 1;
     hero = array[rand.nextInt(numHeroes)];
+
   }
   
+  public String getHero()
+  {
+    return hero;
+  }
+
   public void mistakes()
   {
     
