@@ -8,4 +8,4 @@ conversion = list(input)
 index = 0
 while i < conversion.length:
 	print(conversion[len(conversion) - 1])
-	index++
+	index += 1
