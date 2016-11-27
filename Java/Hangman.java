@@ -34,19 +34,9 @@ public class Hangman
     hero = array[rand.nextInt(numHeroes)];
   }
   
-  public String getHero()
-  {
-    return hero; 
-  }
-  
   public void mistakes()
   {
     
-  }
-  
-  public int getMistakes()
-  {
-    return mistakes;
   }
   
   public static void main(String[] args)
