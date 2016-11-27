@@ -10,7 +10,7 @@ public class Hangman
   private String hero;
   private int mistakes = 6;
   
-  
+  \\ Constructor
   public Hangman()
   {
     Scanner scan = new Scanner(System.in);
@@ -29,7 +29,7 @@ public class Hangman
     guess = temp.toCharArray();
 
 
-  }// End of Constructor
+  }
   
   public void choosenHero()
   {
