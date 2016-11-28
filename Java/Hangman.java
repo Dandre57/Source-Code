@@ -6,9 +6,9 @@ public class Hangman
   private String[] array = {"batman", "flash", "superman", "cyborg", 
                             "wonderwoman", "aquaman", "ironman", "hulk", 
                             "thor", "wolverine", "spiderman"}
-  private int numHeroes;
+  private final int numHeroes;
+  private final int mistakes = 6;
   private String hero;
-  private int mistakes = 6;
   
   \\ Constructor
   public Hangman()
