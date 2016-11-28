@@ -42,7 +42,7 @@ This method adds pictures to the main interface
 def addPictures():
   global root
   
-  firstPicture = tkinter.PhotoImage(file="filepath/FortuneCookie.jpeg")
+  firstPicture = tkinter.PhotoImage(file="filepath/.jpeg")
   cookiePic = tkinter.Label(root, image=firstPicture)
   cookiePic.pack(anchor=CENTER)
 
@@ -65,3 +65,6 @@ Main method
 """
 def main():
   mainInterface()
+  
+# Runs program  
+main()
