@@ -6,9 +6,9 @@ public class Hangman
   private String[] array = {"batman", "flash", "superman", "cyborg", 
                             "wonderwoman", "aquaman", "ironman", "hulk", 
                             "thor", "wolverine", "spiderman"}
-  private final int numHeroes;
-  private final int mistakes = 6;
+  private int mistakes = 6;
   private String hero;
+  private int numHeroes
   
   \\ Constructor
   public Hangman()
@@ -17,16 +17,23 @@ public class Hangman
     
     chooseHero();
     String answer = getHero();
-    String temp;
+    char temp;
     char[] guess;
       
     System.out.println("Welcome to Hangman! \n");
     System.out.println("This version only contains popular heroes from \n" +
     "the Marvel and D.C. Universes!");
 
-    System.out.print("Take your guess: ");
+    System.out.print("Enter a letter: ");
+    /*
     temp = scan.nextln();
     guess = temp.toCharArray();
+    */
+    temp = scan.nextln();
+    if(temp.length > 1)
+      System.out.println("Sorry, Input is to long.");
+    
+    if()
 
 
   }
