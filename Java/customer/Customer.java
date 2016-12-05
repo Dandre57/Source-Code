@@ -6,8 +6,10 @@ public class Customer extends Person
   private boolean mailingList;
   private Scanner scan = new Scanner(System.in);
   
-  public Customer(String name, String addr, String num)
+  public Customer()
   {    
+    String name, addr, num;
+  
     System.out.print("Input the customer's name: ");
     name = scan.nextLine();
     super.setName(name);
