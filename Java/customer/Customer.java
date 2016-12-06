@@ -25,9 +25,9 @@ public class Customer extends Person
     listOption();
     
     System.out.println("Customer's Information: ");
-    System.out.println("Name: " + super.getName() +
-                       "\nAddress: " + super.getAddress() +
-                       "\nTelephone Number: " + super.getNumber());
+    System.out.println("Name: " + super.getName() 
+                       + "\nAddress: " + super.getAddress()
+                       + "\nTelephone Number: " + super.getNumber());
     
     if(mailingList == true)
       System.out.println("You are on the mailing list.");
