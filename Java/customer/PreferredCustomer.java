@@ -1,12 +1,24 @@
+import java.util.Scanner;
+
 public class PreferredCustomer
 {
   private Customer customer = null;
   private double amount;
   private int discountLevel;
+  private Scanner scan = new Scanner(System.in);
   
   public PreferredCustomer()
   {
-    System.out.println("Once your cumulative purshare amount " 
+    customer = new Customer();
+    
+    System.out.print("How much money have you spend in our store? : ");
+    String input = scan.nextLine();
+    
+    amount = Double.parseDouble(input);
+    setAmount(amount);
+    setLevel();
+    
+    System.out.println("\nOnce your cumulative purshare amount " 
                          + "reaches a certain \namount you get a discount " 
                          + "on all future purshares.\n");
     System.out.println("Discount Levels: \n" 
@@ -35,9 +47,16 @@ public class PreferredCustomer
     return amount;
   }
   
-  public void setLevel(int discountLevel)
+  public void setLevel()
   {
-    this.discountLevel = discountLevel;
+    if(amount >= 500 || amount < 1000)
+      discountLevel = 1;
+    else if(amount >= 1000 || amount < 1500)
+      discountLevel = 2;
+    else if(amount >= 1500 || amount < 2000)
+      discountLevel = 3;
+    else if(amount >= 2000)
+      discountLevel = 4;
   }
   
   public int getLevel()
