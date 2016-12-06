@@ -41,4 +41,9 @@ public class BankAccount
     numberOfWithdrawals = 0;
     serviceCharge = 0;
   }
+  
+  public double getBalance()
+  {
+    return balance;
+  }
 }
