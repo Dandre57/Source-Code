@@ -18,10 +18,20 @@ public class BankAccount
     numberOfDeposits++;
   }
   
+  public int getNumOfDeposits()
+  {
+    return numberOfDeposits;
+  }
+  
   public void withdraw(double amount)
   {
     balance -= amount;
     numberOfWithdrawals++;
+  }
+  
+  public int getNumOfWithdrawals()
+  {
+    return numberOfWithdrawals;
   }
   
   public void calcInterest()
@@ -57,13 +67,4 @@ public class BankAccount
     return balance;
   }
   
-  public int getNumOfDeposits()
-  {
-    return numberOfDeposits;
-  }
-  
-  public int getNumOfWithdrawals()
-  {
-    return numberOfWithdrawals;
-  }
 }
