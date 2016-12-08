@@ -4,9 +4,9 @@ public class BankAccount
   private int numberOfDeposits = 0;
   private int numberOfWithdrawals = 0;
   private double interestRate = .10;
-  private double serviceCharge = 10;
+  private double serviceCharge;
   
-  public BackAccount(double balance, double interestRate)
+  public BankAccount(double balance, double interestRate)
   {
     this.balance = balance;
     this.interestRate = interestRate;
@@ -42,8 +42,28 @@ public class BankAccount
     serviceCharge = 0;
   }
   
+  public void setCharge(double serviceCharge)
+  {
+    this.serviceCharge = serviceCharge;
+  }
+  
+  public double getCharge()
+  {
+    return serviceCharge;
+  }
+  
   public double getBalance()
   {
     return balance;
+  }
+  
+  public int getNumOfDeposits()
+  {
+    return numberOfDeposits;
+  }
+  
+  public int getNumOfWithdrawals()
+  {
+    return numberOfWithdrawals;
   }
 }
