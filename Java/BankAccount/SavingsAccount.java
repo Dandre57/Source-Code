@@ -56,11 +56,17 @@ public class SavingsAccount
   
   public void monthlyProcess()
   {
-    int with = bank.getNumOfWithdrawals();
+    int temp, withdrawal = bank.getNumOfWithdrawals();
     
-    if(with > 4)
+    if(withdrawal > 4)
     {
-      bank.setCharge(1); 
+      temp = withdrawal * 1;
+      bank.setCharge(temp); 
+      bank.monthlyProcess();
+    }
+    else
+    {
+      bank.monthlyProcess();
     }
   }
 }
