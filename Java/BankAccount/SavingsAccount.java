@@ -56,6 +56,11 @@ public class SavingsAccount
   
   public void monthlyProcess()
   {
+    int with = bank.getNumOfWithdrawals();
     
+    if(with > 4)
+    {
+      bank.setCharge(1); 
+    }
   }
 }
