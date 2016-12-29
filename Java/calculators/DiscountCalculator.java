@@ -11,7 +11,7 @@ public class DiscountCalculator extends JFrame
 { 
  private final int WIDTH = 400;
  private final int LENGTH = 400;
- private Font font = new Font("Times New Roman", Font.BOLD, 14);
+ private final Font font = new Font("Times New Roman", Font.BOLD, 14);
  private JLabel priceLabel = new JLabel("Item Price: ");
  private JTextField text = new JTextField("", 20);
  private JLabel slideLabel = new JLabel("Discount Percentage: ");
@@ -112,9 +112,9 @@ public class DiscountCalculator extends JFrame
  {
   public void actionPerformed(ActionEvent a)
   {
-   Double userPrice = getPrice();
-   Double userDiscount = getDiscount() / 100;
-   Double answer;
+   double userPrice = getPrice();
+   double userDiscount = getDiscount() / 100;
+   double answer;
    
    answer = userPrice * userDiscount;
    
