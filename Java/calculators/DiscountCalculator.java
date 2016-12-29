@@ -124,15 +124,6 @@ public class DiscountCalculator extends JFrame
  };
  
  /**
-  * Main method
-  * @param args
-  */
- public static void main(String[] args) 
- {
-  new DiscountCalculator();
- }
- 
- /**
   * 
   * @author dandr
   *
@@ -144,5 +135,13 @@ public class DiscountCalculator extends JFrame
 		 
 	 }
  }
-
+ 
+ /**
+  * Main method
+  * @param args
+  */
+ public static void main()
+ {
+ 	new DiscountCalculator();
+ }
 }
