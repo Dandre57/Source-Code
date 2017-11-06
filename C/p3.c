@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
 
 struct node* ina(struct node* newNode, int index, char* newText);
 //struct node* inb(struct node* newNode, int index, char* newText);
