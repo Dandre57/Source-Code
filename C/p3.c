@@ -3,123 +3,141 @@
 #include <string.h>
 #include <stdbool.h>
 
-void ina(int index, char newText); 
-void inb(int index, char newText); 
-struct node *del(int index); // done
-void rep(int index, char newText); 
-void prn(); // done 
-void end(); // done 
+struct node* ina(struct node* newNode, int index, char* newText);
+//struct node* inb(struct node* newNode, int index, char* newText);
+struct node* del(struct node* newNode, int index);
+struct node* rep(struct node* newNode, int index, char* newText);
+void prn(struct node* newNode);
+void end();
 
 struct node
 {
-	char text[255];
+	char text;
 	int index;
 	struct node *next;
 };
-
-struct node *head = NULL;
-struct node *current = NULL;
-struct node *previous = NULL;
 
 int main(void)
 {
 	char command[4];
 	int index;
-	char str[255];
+	char text[255];
 	
 	while(strcmp(command, "end") != 0) 
 	{
+		struct node* list = NULL; 
+		
 		printf("Enter your command:"); fflush(stdout);
-		scanf("%s %d %s", &command, &index, &str);
+		scanf("%s %d %s", &command, &index, &text);
 		
 		if(strcmp(command, "ina") == 0)
-			ina(index, str);
+			ina(list, index, text);
 		else if(strcmp(command, "inb") == 0)
-			inb(index, str);
+			inb(list, index, text);
 		else if(strcmp(command, "del") == 0)
-			del(index);
+			del(list, index);
 		else if(strcmp(command, "rep") == 0)
-			rep(index, str);
+			rep(list, index, text);
 		else if(strcmp(command, "prn") == 0)
-			prn();
+			prn(list);
 		else if(strcmp(command, "end") == 0)
 			end();
 		
 	}
 	
-	
 	return 0;
 }
 
-void ina(int index, char newText)
+struct node* ina(struct node* newNode, int index, char* newText)
 {
-	struct node *new = (struct node*) malloc(sizeof(struct node));
+	//struct node* otherNode = (struct node*) malloc(sizeof(struct node));
 	
-	if(previous == NULL)
-		printf("Problem.");
+	if(newNode == NULL)
+		printf("List is empty \n");
 	
-	new->text = newText;
-	new->next = previous->next;
-	previous->next = new;
-}
-
-void inb(int index, char newText)
-{
-	
-}
-
-struct node *del(int index)
-{
-	//struct node *previous = NULL;
-	
-	if(head == NULL)
-		return NULL; // print something ....
-	
-	while(current->index != index)
+	while(newNode != NULL)
 	{
-		if(current->next == NULL)
-			return NULL; // print something ....
-		else
-		{
-			previous = current;
-			current = current->next;
-		}
+		if(newNode->index == index)
+			newNode->text = newText;
+		
+		newNode = newNode->next;
 	}
 	
-	if(current == head)
-		head = head->next;
+	return newNode;
+}
+/*
+struct node* inb(struct node* newNode, int index, char* newText)
+{
+	if(newNode == NULL)
+		printf("List is empty \n");
+	
+	
+}
+*/
+struct node* del(struct node* newNode, int index)
+{
+	struct node* temp = newNode, *prev;
+	
+	if(temp != NULL && temp->index == index)
+		newNode = temp->next;
+
+	
+	while(temp != NULL && temp->index != index)
+	{
+		prev = temp;
+		temp = temp->next;
+	}
+	
+	if(temp = NULL)
+		printf("Index does not exist \n");
+	
+	prev->next = temp->next;
+	printf("Deleted \n");
+	
+	return temp;
+}
+
+struct node* rep(struct node* newNode, int index, char* newText)
+{
+	if(newNode != NULL)
+	{
+		while(newNode != NULL)
+		{
+			if(newNode->index == index)
+			{
+				newNode->text = newText;
+				printf("Replaced \n");
+			}
+			else if(newNode->index != index)
+				printf("No such index \n");
+			
+			newNode = newNode->next;
+		}
+		
+		return newNode;
+	}
 	else
-		previous->next = current->next;
-	
-	return current; // print something ....
+		return NULL;
 }
 
-void rep(int index, char newText)
+void prn(struct node* newNode)
 {
-	
-}
-
-void prn()
-{
-	struct node *ptr = head;
-	
-	if(ptr == NULL)
+	if(newNode == NULL)
 	{
 		printf("The list is empty. \n"); fflush(stdout);
 	}
 	else
 	{
 		printf("List: \n"); fflush(stdout);
-		while(ptr != NULL)
+		while(newNode != NULL)
 		{
-			printf("%d : %s \n", ptr->index, ptr->text);
-			ptr = ptr->next;
+			printf("%d : %s \n", newNode->index, newNode->text); fflush(stdout);
+			newNode = newNode->next;
 		}
-		printf("Done. \n"); fflush(stdout);
 	}	
 }
 
-void end()
+void end() 
 {
 	printf("Ending program...\n"); fflush(stdout);
 	exit(0);
