@@ -10,6 +10,7 @@ struct node* rep(struct node* newNode, int index, char* newText);
 void prn(struct node* newNode);
 void end();
 
+// List that contains text alongside each index
 struct node
 {
 	char text;
@@ -51,18 +52,20 @@ int main(void)
 	return 0;
 }
 
+// Creates a new list starting with the given node
 struct node* insert(struct node* newNode, int index, char* newText)
 {
-	struct node* head = newNode;
-	head->next =  malloc(sizeof(struct node*));
+	newNode->next =  malloc(sizeof(struct node*));
 		
-	head->next->index = index;
-	head->next->text = newText;
-	newNode = head;
+	newNode->next->index = index;
+	newNode->next->text = newText;
+	//strcpy(newNode->next->text, newText);
 	
 	return newNode;
 }
 
+// Inserts a new node after the given index. If the list is empty
+// it inserts node at the beginning
 struct node* ina(struct node* newNode, int index, char* newText)
 {
 	if(newNode == NULL)
@@ -89,13 +92,12 @@ struct node* ina(struct node* newNode, int index, char* newText)
 	return newNode;
 }
 
+// Inserts a new node before the given index. If the list is empty
+// it inserts node at the beginning
 struct node* inb(struct node* newNode, int index, char* newText)
 {
 	if(newNode == NULL)
-	{
-		//newNode->text = strdup(newText);
 		insert(newNode, index, newText);
-	}
 	
 	while(newNode != NULL)
 	{
@@ -111,7 +113,6 @@ struct node* del(struct node* newNode, int index)
 	
 	if(temp != NULL && temp->index == index)
 		newNode = temp->next;
-
 	
 	while(temp != NULL && temp->index != index)
 	{
@@ -128,6 +129,7 @@ struct node* del(struct node* newNode, int index)
 	return temp;
 }
 
+// Traverse through the list and replaces the node at the given index
 struct node* rep(struct node* newNode, int index, char* newText)
 {
 	if(newNode != NULL)
@@ -153,6 +155,7 @@ struct node* rep(struct node* newNode, int index, char* newText)
 		return NULL;
 }
 
+// Prints the list. Each node is printed on a different line
 void prn(struct node* newNode)
 {
 	if(newNode == NULL)
@@ -170,6 +173,7 @@ void prn(struct node* newNode)
 	}	
 }
 
+// Ends program if this command is called. Takes no parameters
 void end() 
 {
 	printf("Ending program...\n"); fflush(stdout);
