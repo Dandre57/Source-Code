@@ -3,7 +3,7 @@
 #include <string.h>
 
 struct node* ina(struct node* newNode, int index, char* newText);
-//struct node* inb(struct node* newNode, int index, char* newText);
+struct node* inb(struct node* newNode, int index, char* newText);
 struct node* del(struct node* newNode, int index);
 struct node* rep(struct node* newNode, int index, char* newText);
 void prn(struct node* newNode);
@@ -21,13 +21,16 @@ int main(void)
 	char command[4];
 	int index;
 	char text[255];
+	struct node* list = NULL; 
 	
 	while(strcmp(command, "end") != 0) 
 	{
-		struct node* list = NULL; 
+		//look up how to split string into different parts
 		
 		printf("Enter your command:"); fflush(stdout);
-		scanf("%s %d %s", &command, &index, &text);
+		scanf("%s", &command);
+		
+		
 		
 		if(strcmp(command, "ina") == 0)
 			ina(list, index, text);
@@ -52,27 +55,41 @@ struct node* ina(struct node* newNode, int index, char* newText)
 	//struct node* otherNode = (struct node*) malloc(sizeof(struct node));
 	
 	if(newNode == NULL)
-		printf("List is empty \n");
+	{
+		//strcpy(newNode->text, newText);
+		newNode->text = strdup(newText);
+	}
 	
 	while(newNode != NULL)
 	{
 		if(newNode->index == index)
-			newNode->text = newText;
+		{
+			//newNode->text = newText;
+			//strcpy(newNode->text, newText);
+			newNode->text = strdup(newText);
+			printf("Ok \n");
+		}
+			
 		
 		newNode = newNode->next;
 	}
 	
 	return newNode;
 }
-/*
+
 struct node* inb(struct node* newNode, int index, char* newText)
 {
 	if(newNode == NULL)
-		printf("List is empty \n");
+		newNode->text = strdup(newText);
 	
-	
+	while(newNode != NULL)
+	{
+		//newNode->text = newText;
+		//strcpy(newNode->text, newText);
+		newNode = newNode->next;
+	}
 }
-*/
+
 struct node* del(struct node* newNode, int index)
 {
 	struct node* temp = newNode, *prev;
@@ -104,7 +121,9 @@ struct node* rep(struct node* newNode, int index, char* newText)
 		{
 			if(newNode->index == index)
 			{
-				newNode->text = newText;
+				//newNode->text = newText;
+				//strcpy(newNode->text, newText);
+				newNode->text = strdup(newText);
 				printf("Replaced \n");
 			}
 			else if(newNode->index != index)
