@@ -50,6 +50,19 @@ int main(void)
 	return 0;
 }
 
+void insert(struct node* newNode, int index, char* newText)
+{
+	struct node* head = newNode;
+	
+	while(head->next != NULL)
+		head = head->next;
+		
+	head->next =  malloc(sizeof(struct node*));
+	head->next->index = index;
+	head->next->text = newText;
+	head->next->next = NULL;
+}
+
 struct node* ina(struct node* newNode, int index, char* newText)
 {
 	//struct node* otherNode = (struct node*) malloc(sizeof(struct node));
