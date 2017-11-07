@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+struct node* insert(struct node* newNode, int index, char* newText);
 struct node* ina(struct node* newNode, int index, char* newText);
 struct node* inb(struct node* newNode, int index, char* newText);
 struct node* del(struct node* newNode, int index);
@@ -50,27 +51,25 @@ int main(void)
 	return 0;
 }
 
-void insert(struct node* newNode, int index, char* newText)
+struct node* insert(struct node* newNode, int index, char* newText)
 {
 	struct node* head = newNode;
-	
-	while(head->next != NULL)
-		head = head->next;
-		
 	head->next =  malloc(sizeof(struct node*));
+		
 	head->next->index = index;
 	head->next->text = newText;
-	head->next->next = NULL;
+	newNode = head;
+	
+	return newNode;
 }
 
 struct node* ina(struct node* newNode, int index, char* newText)
 {
-	//struct node* otherNode = (struct node*) malloc(sizeof(struct node));
-	
 	if(newNode == NULL)
 	{
 		//strcpy(newNode->text, newText);
-		newNode->text = strdup(newText);
+		//newNode->text = strdup(newText);
+		insert(newNode, index, newText);
 	}
 	
 	while(newNode != NULL)
@@ -93,7 +92,10 @@ struct node* ina(struct node* newNode, int index, char* newText)
 struct node* inb(struct node* newNode, int index, char* newText)
 {
 	if(newNode == NULL)
-		newNode->text = strdup(newText);
+	{
+		//newNode->text = strdup(newText);
+		insert(newNode, index, newText);
+	}
 	
 	while(newNode != NULL)
 	{
