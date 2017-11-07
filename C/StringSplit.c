@@ -15,21 +15,18 @@ int main(void)
 	printf("Enter your command:"); fflush(stdout);
 	scanf("%s", &string);
 
-	//command = strtok(string, " ");
-	//conversion = strtok(NULL, " ");
-	//text = strtok(NULL, " ");
+	command = strtok(string, " ");
 	
-	//printf("%s %s %s", command, conversion, text);
 	/*
+	conversion = strtok(NULL, " ");
+	text = strtok(NULL, " ");
+	printf("%s %s %s", command, conversion, text);
+	*/
+	
 	while(command != NULL)
 	{
 		printf("%s \n", command);
 		command = strtok(NULL, " ");
-	}
-	*/
-	for(command = strtok(string, " "); command != NULL; command = strtok(NULL, " ") )
-	{
-		printf("%s \n", command);
 	}
 	
 	return 0;
