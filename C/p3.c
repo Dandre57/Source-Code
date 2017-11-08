@@ -55,11 +55,12 @@ int main(void)
 // Creates a new list starting with the given node
 struct node* insert(struct node* newNode, int index, char* newText)
 {
-	newNode->next =  malloc(sizeof(struct node*));
-		
-	newNode->next->index = index;
-	newNode->next->text = newText;
+	struct node* head = (struct node*) malloc(sizeof(struct node*));
+	
+	head->next->index = index;
+	head->next->text = newText;
 	//strcpy(newNode->next->text, newText);
+	newNode = head;
 	
 	return newNode;
 }
