@@ -80,6 +80,10 @@ int main(int argc, char* argv[])
 void flagv(char argv[])
 {
 	// prints .DATA segment of mal program
+	const char identifier = ':';
+	char* string;
+	
+	//string = strchr( , identifier); ?
 }
 
 void flagf(char argv[])
