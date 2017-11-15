@@ -1,10 +1,3 @@
-/*
-Name:			D'Andre Campbell
-Unix Login ID:  dc959761@itsunix.albany.edu
-Lab Instructor: Chunpai Wang
-Lab: 			Monday 10:25 - 11:20
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -15,13 +8,17 @@ Lab: 			Monday 10:25 - 11:20
 void flagv(char argv[]);
 void flagf(char argv[]);
 void flagb(char argv[]);
-/*
+
 struct node
 {
 	char identifier[11];
 	struct node* next;
-} list[100];
-*/
+};
+
+struct node listV[100];
+struct node listF[100];
+struct node listB[100];
+
 int main(int argc, char* argv[])
 {
 	FILE *firstFile;
@@ -100,4 +97,9 @@ void flagb(char argv[])
 	Use fgets to read file line by line. For each line thats not
 	a comment or blank, use strtok to parse line and extract the
 	various fields.
+	
+	Writing statements that will print a word if it contains a 
+	certain character
+	
+	strtok_r();
 */
