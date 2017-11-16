@@ -18,8 +18,8 @@ struct line
 struct node
 {
 	char identifier[11];
-	struct node* firstNode;
-	struct node* lastNode;
+	struct line* firstNode;
+	struct line* lastNode;
 };
 
 struct node commandV[100];
@@ -28,6 +28,8 @@ struct node commandB[100];
 
 int main(int argc, char* argv[])
 {
+	struct line* list = NULL;
+	
 	FILE *firstFile;
 	FILE *secondFile;
 	char fileName[strlen(argv[2]) + 5];
@@ -53,6 +55,7 @@ int main(int argc, char* argv[])
 	while(!feof(firstFile))
 	{
 		fscanf(firstFile, "%s", fileContent);
+		//strcat(list->sourceLine, fileContent);
 	}
 	
 	strcat(otherName, argv[3]);
