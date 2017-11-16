@@ -5,19 +5,26 @@
 // http://www.chegg.com/homework-help/questions-and-answers/write-c-program-whose-input-mips-assembly-language-mal-program-whose-output-listing-mal-pr-q16753309
 // https://stackoverflow.com/questions/10468128/how-do-you-make-an-array-of-structs-in-c
 
-void flagv(char argv[]);
-void flagf(char argv[]);
-void flagb(char argv[]);
+void flagv(FILE* input, FILE* output);
+void flagf(FILE* input, FILE* output);
+void flagb(FILE* input, FILE* output);
+
+struct line
+{
+	char* sourceLine;
+	struct line* next;
+};
 
 struct node
 {
 	char identifier[11];
-	struct node* next;
+	struct node* firstNode;
+	struct node* lastNode;
 };
 
-struct node listV[100];
-struct node listF[100];
-struct node listB[100];
+struct node commandV[100];
+struct node commandF[100];
+struct node commandB[100];
 
 int main(int argc, char* argv[])
 {
@@ -25,18 +32,17 @@ int main(int argc, char* argv[])
 	FILE *secondFile;
 	char fileName[strlen(argv[2]) + 5];
 	char otherName[strlen(argv[3]) + 5];
-	char fileContent;
-	char flag;
+	char* fileContent;
+	char* flag;
 	
 	if(argc != 4)
 	{
-		printf("Number of arguments is not correct");
+		printf("Number of arguments is not correct.\n");
 		exit(0);
 	}
 	
 	strcat(fileName, argv[2]);
 	strcat(fileName, ".mal");
-	
 	firstFile = fopen(fileName, "r");
 	if(firstFile == NULL)
 	{
@@ -44,20 +50,23 @@ int main(int argc, char* argv[])
 		exit(0);
 	}
 	
+	while(!feof(firstFile))
+	{
+		fscanf(firstFile, "%s", fileContent);
+	}
+	
 	strcat(otherName, argv[3]);
 	strcat(otherName, ".txt");
-	
 	secondFile = fopen(otherName, "w");
-
 	
 	if(strcmp(argv[1], "-v") == 0)
-		flagv(argv[2]);
+		flagv(firstFile, secondFile);
 		
 	else if(strcmp(argv[1], "-f") == 0)
-		flagf(argv[2]);
+		flagf(firstFile, secondFile);
 		
 	else if(strcmp(argv[1], "-b") == 0)
-		flagb(argv[2]);
+		flagb(firstFile, secondFile);
 		
 	else
 	{
@@ -65,34 +74,32 @@ int main(int argc, char* argv[])
 		exit(0);
 	}
 	
-	
 	fclose(firstFile);
 	fclose(secondFile);
-	
 	printf("Finished. \n"); fflush(stdout);
 	
 	return 0;
 }
 
-void flagv(char argv[])
+void flagv(FILE* input, FILE* output)
 {
 	// prints .DATA segment of mal program
 	const char identifier = ':';
 	char* string;
 	
+	
 	//string = strchr( , identifier); ?
 }
 
-void flagf(char argv[])
+void flagf(FILE* input, FILE* output)
 {
 	// prints .TEXT segment of mal program
 }
 
-void flagb(char argv[])
+void flagb(FILE* input, FILE* output)
 {
 	// prints both segments of mal program
 }
-
 /*
 	Use fgets to read file line by line. For each line thats not
 	a comment or blank, use strtok to parse line and extract the
