@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 // http://www.chegg.com/homework-help/questions-and-answers/write-c-program-whose-input-mips-assembly-language-mal-program-whose-output-listing-mal-pr-q16753309
 // https://stackoverflow.com/questions/10468128/how-do-you-make-an-array-of-structs-in-c
@@ -88,10 +89,37 @@ void flagv(FILE* input, FILE* output)
 {
 	// prints .DATA segment of mal program
 	const char identifier = ':';
-	char* string;
+	char string[100];
+	char word[sizeof string];
+	char *ptr, *other = word;
+	int contain = 0, i;
 	
+	//while(!feof(firstFile))
+	//while(fgets(string, 100, input) != ".text")
+	//while((i = gets(input)) != ".text")
+	while(fgets(string, 100, input) != ".text")
+	{
+		for(ptr = string; *ptr != '\0'; ptr++)
+		{
+			if(isspace(*ptr))
+			{
+				*other = '\0';
+				if(contain)
+					fprintf(output, "Variable ID -%s-\n", word);
+				
+				contain = 0;
+				other = word;
+			}
+			else
+			{
+				if(*ptr == identifier)
+					contain = 1;
+				
+				*other++ = *ptr;
+			}
+		}
+	}
 	
-	//string = strchr( , identifier); ?
 }
 
 void flagf(FILE* input, FILE* output)
@@ -102,7 +130,40 @@ void flagf(FILE* input, FILE* output)
 void flagb(FILE* input, FILE* output)
 {
 	// prints both segments of mal program
+	const char identifier = ':';
+	char string[100];
+	char word[sizeof string];
+	char *ptr, *other = word;
+	int contain = 0, i;
+	
+	//while(!feof(firstFile))
+	//while(fgets(string, 100, input) != ".text")
+	//while((i = gets(input)) != ".text")
+	while(fgets(string, 100, input) != EOF)
+	{
+		for(ptr = string; *ptr != '\0'; ptr++)
+		{
+			if(isspace(*ptr))
+			{
+				*other = '\0';
+				if(contain)
+					fprintf(output, "Variable ID -%s-\n", word);
+				
+				contain = 0;
+				other = word;
+			}
+			else
+			{
+				if(*ptr == identifier)
+					contain = 1;
+				
+				*other++ = *ptr;
+			}
+		}
+	}
+	
 }
+
 /*
 	Use fgets to read file line by line. For each line thats not
 	a comment or blank, use strtok to parse line and extract the
