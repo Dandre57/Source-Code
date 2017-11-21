@@ -5,6 +5,8 @@
 
 // http://www.chegg.com/homework-help/questions-and-answers/write-c-program-whose-input-mips-assembly-language-mal-program-whose-output-listing-mal-pr-q16753309
 // https://stackoverflow.com/questions/10468128/how-do-you-make-an-array-of-structs-in-c
+// https://stackoverflow.com/questions/29569102/look-for-a-specific-character-in-a-sentence-and-print-each-word-that-has-that-ch
+
 
 void flagv(FILE* input, FILE* output);
 void flagf(FILE* input, FILE* output);
@@ -105,7 +107,10 @@ void flagv(FILE* input, FILE* output)
 			{
 				*other = '\0';
 				if(contain)
+				{
 					fprintf(output, "Variable ID -%s-\n", word);
+					printf("Variable ID -%s-\n", word); fflush(stdout);
+				}
 				
 				contain = 0;
 				other = word;
@@ -147,7 +152,11 @@ void flagb(FILE* input, FILE* output)
 			{
 				*other = '\0';
 				if(contain)
+				{
 					fprintf(output, "Variable ID -%s-\n", word);
+					printf("Variable ID -%s-\n", word); fflush(stdout);
+				}
+					
 				
 				contain = 0;
 				other = word;
