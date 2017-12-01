@@ -1,0 +1,53 @@
+#this code is about identify the number of whitespace, or numbers of intergers, 
+#by assuming that every integers are separated by one space, tab, or newline 
+
+.data
+prompt: .asciiz "Enter Numbers: \n"
+str: 	.space 80
+nl: 	.asciiz  "\n"
+whit: 	.byte ' '
+
+.text 
+main:	#start
+    la $a0,prompt  		#print out the prompt
+    li $v0,4
+    syscall
+
+    la $a0,str   		#read the input str with 80 space 
+    li $a1,80
+    li $v0,8
+    syscall
+     
+    la $a0,str  		#print out the str
+    li $v0,4
+    syscall
+    
+
+    lb $t2,whit
+    move $s1,$0
+    la $a0,str
+    move $t0,$a0  	  #move str to reg $t0
+
+loop:
+    addi $t0,$t0,1
+    lb $t1,0($t0)          #load first char of str into t1 reg to be analyzed
+    
+    beqz $t1,exit
+    beq $t1,$t2,count      #if ' '  branch
+    beq $t1,10,count       #if '\n'  branch
+    beq $t1,11,count       #if '\t'  branch
+    j loop
+
+
+
+count:
+    addi $s1,$s1,1
+    j loop
+
+exit:
+    move $a0,$s1
+    li $v0,1
+    syscall
+
+    li $v0,10    #exit
+    syscall
