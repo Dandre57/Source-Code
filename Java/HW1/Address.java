@@ -12,42 +12,42 @@ public class Address
   
   public void setStreet(String street)
   {
-    this.street = street;
+      this.street = street;
   }
   
   public String getStreet()
   {
-    return street;
+     return street;
   }
   
   public void setCity(String city)
   {
-  
+     this.city = city;
   }
   
   public String getCity()
   {
-  
+     return city;
   }
   
-  public void setState()
+  public void setState(String state)
   {
-  
+     this.state = state;
   }
   
   public String getState()
   {
-  
+      return state;
   }
   
-  public void setZip()
+  public void setZip(String zip)
   {
-  
+      this.zip = zip;
   }
   
   public String getZip()
   {
-  
+      return zip;
   }
   
   public String toString()
