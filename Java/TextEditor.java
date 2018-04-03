@@ -5,6 +5,7 @@ import javax.swing.*;
 import javax.swing.text.*;
 import javax.swing.undo.*;
 
+@SuppressWarnings("serial")
 public class TextEditor extends JFrame 
 {
   private JTextArea area = new JTextArea(25, 75); 
