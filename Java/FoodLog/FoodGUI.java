@@ -34,6 +34,7 @@ public class FoodGUI extends Food
 		
 		enterButton = new JButton("Enter");
 		
+		panel = new JPanel();
 		panel.add(messageLabel);
 		panel.add(date_text);
 		panel.add(food_text);
