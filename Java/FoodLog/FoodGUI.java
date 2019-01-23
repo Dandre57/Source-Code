@@ -1,9 +1,5 @@
-package Food;
-
 import java.time.LocalDate;
-import javax.swing.*;
-import javax.swing.event.*;
-import java.awt.*;
+import java.time.format.DateTimeFormatter;
 import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.*;
@@ -20,20 +16,13 @@ public class FoodGUI extends Food
 	private final int LENGTH = 300;
 	
 	public FoodGUI() {
-		
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-		LocalDate localdate = LocalDate.now();
-		System.out.println(dtf.format(localDate));
-		
-		setTitle("Food Log");
-		setSize(WIDTH, LENGTH);
-		
+		JFrame frame = new JFrame();
+		frame.setTitle("Food Log");
+		frame.setSize(WIDTH, LENGTH);
 		mainPanel();
-		add(panel);
-		
-		//pack();
-		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.add(panel);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	public void mainPanel() {
@@ -45,13 +34,17 @@ public class FoodGUI extends Food
 		
 		enterButton = new JButton("Enter");
 		
-		panel = new JPanel();
-		
 		panel.add(messageLabel);
 		panel.add(date_text);
 		panel.add(food_text);
 		panel.add(calories_text);
 		panel.add(enterButton);
+	}
+	
+	public void foodDate() {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+		LocalDate ld = LocalDate.now();
+		System.out.println(dtf.format(ld));
 	}
 	
 	public static void main(String[] args) {
