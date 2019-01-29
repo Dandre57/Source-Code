@@ -1,51 +1,89 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
 import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.*;
 
-public class FoodGUI extends Food
+public class FoodGUI extends JPanel
 {
-	private JPanel panel;
-	private JLabel messageLabel;
-	private JTextField date_text;
-	private JTextField food_text;
-	private JTextField calories_text;
+	private final int WIDTH = 220;
+	private final int LENGTH = 250;
+	
+	private JPanel labelPanel;
+	private JLabel dateLabel;
+	private JLabel mealLabel;
+	private JLabel calorieLabel;
+	
+	private JPanel textPanel;
+	private JTextField dateText;
+	private JTextField mealText;
+	private JTextField caloriesText;
+	
 	private JButton enterButton;
-	private final int WIDTH = 300;
-	private final int LENGTH = 300;
+	private JButton searchButton;
+	
+	private String date;
+
 	
 	public FoodGUI() {
 		JFrame frame = new JFrame();
 		frame.setTitle("Food Log");
 		frame.setSize(WIDTH, LENGTH);
-		mainPanel();
-		frame.add(panel);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		mainPanel();
+		frame.add(labelPanel);
+		frame.add(textPanel);
+		
+
+	}
+	
+	public void mainFrame() {
+		
+		
+		
 	}
 	
 	public void mainPanel() {
-		messageLabel = new JLabel("Enter your meal: ");
+		dateLabel = new JLabel("Date: ");
+		dateText = new JTextField(10);
+		dateText.setEditable(false);
 		
-		date_text = new JTextField(10);
-		food_text = new JTextField(25);
-		calories_text = new JTextField(7);
+		mealLabel= new JLabel("Meal: ");
+		mealText = new JTextField(10);
+		
+		calorieLabel= new JLabel("Calories: ");
+		caloriesText = new JTextField(10);
+		
+		dateLabel.setLabelFor(dateText);
+		mealLabel.setLabelFor(mealText);
+		calorieLabel.setLabelFor(caloriesText);
+		
+		labelPanel = new JPanel();	
+		labelPanel.add(dateLabel);
+		labelPanel.add(mealLabel);
+		labelPanel.add(calorieLabel);
+		
+		textPanel = new JPanel();
+		textPanel.add(dateText);
+		textPanel.add(mealText);
+		textPanel.add(caloriesText);
+		
+		
+		
 		
 		enterButton = new JButton("Enter");
-		
-		panel = new JPanel();
-		panel.add(messageLabel);
-		panel.add(date_text);
-		panel.add(food_text);
-		panel.add(calories_text);
-		panel.add(enterButton);
+		searchButton = new JButton("Search");
+		//panel.add(enterButton);
 	}
 	
-	public void foodDate() {
+	public String foodDate() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 		LocalDate ld = LocalDate.now();
-		System.out.println(dtf.format(ld));
+		date = dtf.format(ld);
+		return date;
 	}
 	
 	public static void main(String[] args) {
