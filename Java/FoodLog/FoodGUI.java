@@ -1,6 +1,3 @@
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.*;
@@ -23,8 +20,7 @@ public class FoodGUI extends JPanel
 	private JButton enterButton;
 	private JButton searchButton;
 	
-	private String date;
-
+	private Food food;
 	
 	public FoodGUI() {
 		JFrame frame = new JFrame();
@@ -48,7 +44,8 @@ public class FoodGUI extends JPanel
 	
 	public void mainPanel() {
 		dateLabel = new JLabel("Date: ");
-		dateText = new JTextField(10);
+		dateText = new JTextField(food.getDate());
+		//dateText.setText(food.getDate());
 		dateText.setEditable(false);
 		
 		mealLabel= new JLabel("Meal: ");
@@ -66,25 +63,18 @@ public class FoodGUI extends JPanel
 		labelPanel.add(mealLabel);
 		labelPanel.add(calorieLabel);
 		
-		textPanel = new JPanel();
+		textPanel = new JPanel(); 
 		textPanel.add(dateText);
 		textPanel.add(mealText);
 		textPanel.add(caloriesText);
 		
-		
-		
-		
+		/*
 		enterButton = new JButton("Enter");
 		searchButton = new JButton("Search");
-		//panel.add(enterButton);
+		panel.add(enterButton);
+		*/
 	}
 	
-	public String foodDate() {
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-		LocalDate ld = LocalDate.now();
-		date = dtf.format(ld);
-		return date;
-	}
 	
 	public static void main(String[] args) {
 		new FoodGUI();
