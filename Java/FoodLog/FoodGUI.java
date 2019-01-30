@@ -4,15 +4,16 @@ import java.awt.*;
 
 public class FoodGUI extends JPanel
 {
-	private final int WIDTH = 220;
-	private final int LENGTH = 250;
+	private JPanel panel;
+	private JFrame frame;
 	
-	private JPanel labelPanel;
+	private final int WIDTH = 300;
+	private final int LENGTH = 450;
+	
 	private JLabel dateLabel;
 	private JLabel mealLabel;
 	private JLabel calorieLabel;
 	
-	private JPanel textPanel;
 	private JTextField dateText;
 	private JTextField mealText;
 	private JTextField caloriesText;
@@ -20,59 +21,47 @@ public class FoodGUI extends JPanel
 	private JButton enterButton;
 	private JButton searchButton;
 	
-	private Food food;
+	//private Food food;
 	
-	public FoodGUI() {
-		JFrame frame = new JFrame();
-		frame.setTitle("Food Log");
-		frame.setSize(WIDTH, LENGTH);
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+	public FoodGUI() {		
 		mainPanel();
-		frame.add(labelPanel);
-		frame.add(textPanel);
-		
-
+		mainFrame();
 	}
 	
 	public void mainFrame() {
-		
-		
-		
+		JFrame frame = new JFrame();
+		frame.setTitle("Food Log");
+		frame.setSize(WIDTH, LENGTH);
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		frame.pack();
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	public void mainPanel() {
-		dateLabel = new JLabel("Date: ");
-		dateText = new JTextField(food.getDate());
-		//dateText.setText(food.getDate());
+		panel = new JPanel(new GridLayout(0, 2, 3, 8));
+		
+		dateLabel = new JLabel("Date (mm/dd/yyyy):", JLabel.LEFT);
+		dateText = new JTextField(10);
 		dateText.setEditable(false);
+		panel.add(dateLabel);
+		panel.add(dateText);
 		
-		mealLabel= new JLabel("Meal: ");
+		mealLabel = new JLabel("Meal: ", JLabel.CENTER);
 		mealText = new JTextField(10);
+		panel.add(mealLabel);
+		panel.add(mealText);
 		
-		calorieLabel= new JLabel("Calories: ");
+		calorieLabel = new JLabel("Calories: ", JLabel.CENTER);
 		caloriesText = new JTextField(10);
+		panel.add(calorieLabel);
+		panel.add(caloriesText);
 		
-		dateLabel.setLabelFor(dateText);
-		mealLabel.setLabelFor(mealText);
-		calorieLabel.setLabelFor(caloriesText);
-		
-		labelPanel = new JPanel();	
-		labelPanel.add(dateLabel);
-		labelPanel.add(mealLabel);
-		labelPanel.add(calorieLabel);
-		
-		textPanel = new JPanel(); 
-		textPanel.add(dateText);
-		textPanel.add(mealText);
-		textPanel.add(caloriesText);
-		
-		/*
 		enterButton = new JButton("Enter");
+		panel.add(enterButton);	
+		
 		searchButton = new JButton("Search");
-		panel.add(enterButton);
-		*/
+		panel.add(searchButton);
 	}
 	
 	
